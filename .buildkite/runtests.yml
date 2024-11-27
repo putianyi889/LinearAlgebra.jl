@@ -20,7 +20,7 @@ steps:
         OPT_LEVEL=0
       fi
       julia --color=yes --project=.ci -e 'using Pkg; Pkg.instantiate()'
-      julia --color=yes --project=.ci --optimize=$OPT_LEVEL .ci/create_sysimage_and_run_tests.jl
+      julia --color=yes --project=.ci --optimize=$${OPT_LEVEL} .ci/create_sysimage_and_run_tests.jl
     agents:
       queue: "julia"
       os: "linux"
@@ -39,7 +39,7 @@ steps:
         OPT_LEVEL=0
       fi
       julia --color=yes --project=.ci -e 'using Pkg; Pkg.instantiate()'
-      julia --color=yes --project=.ci --optimize=$OPT_LEVEL .ci/create_sysimage_and_run_tests.jl
+      julia --color=yes --project=.ci --optimize=$${OPT_LEVEL} .ci/create_sysimage_and_run_tests.jl
     agents:
       queue: "julia"
       os: "macos"
@@ -56,7 +56,7 @@ steps:
         OPT_LEVEL=0
       fi
       julia --color=yes --project=.ci -e 'using Pkg; Pkg.instantiate()'
-      julia --color=yes --project=.ci --optimize=$OPT_LEVEL .ci/create_sysimage_and_run_tests.jl
+      julia --color=yes --project=.ci --optimize=$${OPT_LEVEL} .ci/create_sysimage_and_run_tests.jl
     agents:
       queue: "julia"
       os: "windows"
