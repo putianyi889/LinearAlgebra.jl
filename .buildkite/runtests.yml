@@ -15,8 +15,8 @@ steps:
       - JuliaCI/julia#v1:
           version: "nightly"
     command: |
-      julia --color=yes --optimize=1 --project=.ci -e 'using Pkg; Pkg.instantiate()'
-      julia --color=yes --optimize=1 --project=.ci .ci/create_sysimage_and_run_tests.jl
+      julia --color=yes --optimize=0 --project=.ci -e 'using Pkg; Pkg.instantiate()'
+      julia --color=yes --optimize=0 --project=.ci .ci/create_sysimage_and_run_tests.jl
     agents:
       queue: "julia"
       os: "linux"
