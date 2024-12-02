@@ -725,7 +725,8 @@ function ldiv!(Fadj::AdjointFactorization{<:Any,<:Union{QR,QRCompactWY,QRPivoted
 
     # For underdetermined system, the triangular solve should only be applied to the top
     # part of B that contains the rhs. For square problems, the view corresponds to B itself
-    ldiv!(LowerTriangular(adjoint(F.R)), view(B, 1:size(F.R, 2), :))
+    R = F.R
+    ldiv!(LowerTriangular(adjoint(R)), view(B, axes(R, 2), :))
     lmul!(F.Q, B)
 
     return B
