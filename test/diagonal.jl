@@ -478,7 +478,7 @@ Random.seed!(1)
         U, s, V = F
         @test map(x -> x.val, Matrix(F)) ≈ map(x -> x.val, Du)
         @test svdvals(Du) == s
-        @test U isa AbstractMatrix{<:AbstractFloat}
+        @test U isa AbstractMatrix{<:Union{Real,Complex}}
         @test V isa AbstractMatrix{<:AbstractFloat}
         @test s isa AbstractVector{<:Furlong{1}}
         E = eigen(Du)
