@@ -1306,6 +1306,12 @@ end
         A = diagm(0 => [1, 2, 3])
         @test cbrt(A)^3 ≈ A
     end
+    @testset "empty" begin
+        A = Matrix{Float64}(undef, 0, 0)
+        @test cbrt(A) == A
+        A = Matrix{Int}(undef, 0, 0)
+        @test cbrt(A) isa Matrix{Float64}
+    end
 end
 
 @testset "tr" begin
