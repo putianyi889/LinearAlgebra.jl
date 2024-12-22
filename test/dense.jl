@@ -814,6 +814,7 @@ end
 
     A13 = convert(Matrix{elty}, [2 0; 0 2])
     @test typeof(log(A13)) == Array{elty, 2}
+    @test exp(log(A13)) ≈ log(exp(A13)) ≈ A13
 
     T = elty == Float64 ? Symmetric : Hermitian
     @test typeof(log(T(A13))) == T{elty, Array{elty, 2}}
@@ -964,6 +965,10 @@ end
         @test sqrt(A8)^2 ≈ A8
         @test typeof(sqrt(A8)) == Matrix{elty}
     end
+end
+@testset "sqrt for diagonal" begin
+    A = diagm(0 => [1, 2, 3])
+    @test sqrt(A)^2 ≈ A
 end
 
 @testset "issue #40141" begin
@@ -1297,6 +1302,10 @@ end
     T = cbrt(A)
     @test T*T*T ≈ A
     @test eltype(A) == eltype(T)
+    @testset "diagonal" begin
+        A = diagm(0 => [1, 2, 3])
+        @test cbrt(A)^3 ≈ A
+    end
 end
 
 @testset "tr" begin
